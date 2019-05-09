@@ -1,0 +1,5 @@
+#!/bin/bash
+rm -f /var/containers/Shared/SystemGroup/systemgroup.com.apple.mobilegestaltcache/Library/Caches/com.apple.MobileGestalt.plist
+rm -f /var/mobile/Library/Caches/com.apple.MobileGestalt.plist
+echo PLEASE RUN LDRESTART
+exit 0
