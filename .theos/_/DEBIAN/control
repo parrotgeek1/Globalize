@@ -1,10 +1,10 @@
 Package: com.parrotgeek.globalize
-Name: Globalize (not for A12 yet!)
-Depends: mobilesubstrate
+Name: Globalize
+Depends: mobilesubstrate, firmware (>= 9)
 Architecture: iphoneos-arm
 Description: Disables almost all region differences/restrictions on iOS devices. Please run ldrestart after installation.
 Maintainer: parrotgeek1
 Author: parrotgeek1
 Section: Tweaks
-Version: 0.2.4
-Installed-Size: 360
+Version: 0.2.5
+Installed-Size: 504
