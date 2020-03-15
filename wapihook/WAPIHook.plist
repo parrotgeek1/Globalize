@@ -1,1 +1,1 @@
-{ Filter = { Bundles = ( "com.apple.MobileWiFi" ); }; }
+{ Filter = { Bundles = ( "com.apple.UIKit" ); }; }

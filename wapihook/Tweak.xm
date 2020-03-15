@@ -1,24 +1,13 @@
-#import <substrate.h>
-
 //#define FAKE_CHINA
 
-static CFTypeRef (*orig_WiFiDeviceClientCopyProperty)(void *cl,CFStringRef key);
-CFTypeRef replaced_WiFiDeviceClientCopyProperty(void *cl,CFStringRef key) {
-	CFTypeRef retval = NULL;
-	if (CFEqual(key, CFSTR("WAPIEnabled")))  {
+%hookf(CFBooleanRef, "_MGGetBoolAnswer", CFStringRef string)
+{
+	if (CFEqual(string, CFSTR("wapi")) || CFEqual(string, CFSTR("hiHut/WR+B9Lx/vd0WyeNg"))) {
 #ifdef FAKE_CHINA
-        	retval = CFSTR("1");
+		return kCFBooleanTrue;
 #else
-        	retval = NULL;
+		return kCFBooleanFalse;
 #endif
-	} else {
-		retval = orig_WiFiDeviceClientCopyProperty( cl,key );
 	}
-	return retval;
-}
-
-
-__attribute__((constructor)) static void wapiinit() {
-	void * WiFiDeviceClientCopyProperty=MSFindSymbol(MSGetImageByName("/System/Library/Frameworks/MobileWiFi.framework/MobileWiFi"), "_WiFiDeviceClientCopyProperty");
-	MSHookFunction((void *)WiFiDeviceClientCopyProperty, (void *)replaced_WiFiDeviceClientCopyProperty, (void **)&orig_WiFiDeviceClientCopyProperty);
+	return %orig;
 }
