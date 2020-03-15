@@ -19,6 +19,6 @@ CFTypeRef replaced_WiFiDeviceClientCopyProperty(void *cl,CFStringRef key) {
 
 
 __attribute__((constructor)) static void wapiinit() {
-	void * WiFiDeviceClientCopyProperty=MSFindSymbol(MSGetImageByName("/System/Library/Frameworks/MobileWiFi.framework/MobileWiFi"), "_WiFiDeviceClientCopyProperty");
+	void * WiFiDeviceClientCopyProperty=dlsym(RTLD_DEFAULT, "WiFiDeviceClientCopyProperty");
 	MSHookFunction((void *)WiFiDeviceClientCopyProperty, (void *)replaced_WiFiDeviceClientCopyProperty, (void **)&orig_WiFiDeviceClientCopyProperty);
 }
